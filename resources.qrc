@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>media/bad.png</file>
+    <file>media/pending.png</file>
+    <file>media/valid.png</file>
+    <file>media/neutral.png</file>
+  </qresource>
+</RCC>
