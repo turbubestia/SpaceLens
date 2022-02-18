@@ -100,7 +100,7 @@ void Project::open(QString filepath) {
 
 		switch(state) {
 			case 0:
-				if (xml.name() == "project") {
+                if (xml.name() == u"project") {
 					if (attributes.count() > 0) {
 						name = attributes.value("name").toString();
 					}
@@ -109,7 +109,7 @@ void Project::open(QString filepath) {
 				break;
 
 			case 1:
-				if(xml.name() == "images")
+                if(xml.name() == u"images")
 				{
 					nbImages = attributes.value("count").toInt();
 					state = 2;
@@ -117,7 +117,7 @@ void Project::open(QString filepath) {
 				break;
 
 			case 2:
-				if (xml.name() == "image") {
+                if (xml.name() == u"image") {
 					addImage(toAbsolutePath(attributes.value("filename").toString()));
 					if (imageFilenames.count() == nbImages) {
 						state = 1;

@@ -204,7 +204,7 @@ void Project::open(QString filepath) {
 		attributes = xml.attributes();
 
 		if (xml.isEndElement()) {
-			if (xml.name() == "images" || xml.name() == "batch") {
+            if (xml.name() == u"images" || xml.name() == u"batch") {
 				state = 1;
 			}
 			continue;
@@ -212,7 +212,7 @@ void Project::open(QString filepath) {
 
 		switch(state) {
 			case 0:
-				if (xml.name() == "project") {
+                if (xml.name() == u"project") {
 					if (attributes.count() > 0) {
 						name = attributes.value("name").toString();
 					}
@@ -221,11 +221,11 @@ void Project::open(QString filepath) {
 				break;
 
 			case 1:
-				if(xml.name() == "images") {
+                if(xml.name() == u"images") {
 					nbImages = attributes.value("count").toInt();
 					state = 2;
 				}
-				else if (xml.name() == "sortCriteria") {
+                else if (xml.name() == u"sortCriteria") {
                     QString sc = attributes.value("value").toString();
                     if (sc == "ByName") {
                         sortCriteria = ByName;
@@ -235,7 +235,7 @@ void Project::open(QString filepath) {
                         sortCriteria = ByName;
                     }
                 }
-				else if(xml.name() == "batch") {
+                else if(xml.name() == u"batch") {
 					batch = attributes.value("enabled").toInt() == 1;
 					state = 3;
 				}
@@ -243,21 +243,21 @@ void Project::open(QString filepath) {
 				break;
 
 			case 2:
-				if (xml.name() == "image") {
+                if (xml.name() == u"image") {
 					QString filename = attributes.value("filename").toString();
 					imageFilenames.append(toAbsolutePath(filename));
 				}
 				break;
 
 			case 3:
-				if (xml.name() == "groupCriteria") {
+                if (xml.name() == u"groupCriteria") {
 					QString gc = attributes.value("value").toString();
 					if (gc == "ByCount") {
 						groupCriteria = ByCount;
 					} else {
 						groupCriteria = ByCount;
 					}
-				} else if (xml.name() == "groupByCountSize") {
+                } else if (xml.name() == u"groupByCountSize") {
 					groupByCountSize = attributes.value("value").toInt();
 				}
 		}

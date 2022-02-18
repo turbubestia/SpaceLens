@@ -108,7 +108,7 @@ void Project::open(QString filepath) {
 
 		switch(state) {
 			case 0:
-				if (xml.name() == "project") {
+                if (xml.name() == u"project") {
 					if (attributes.count() > 0) {
 						name = attributes.value("name").toString();
 					}
@@ -117,7 +117,7 @@ void Project::open(QString filepath) {
 				break;
 
 			case 1:
-				if (xml.name() == "roi")
+                if (xml.name() == u"roi")
 				{
 					int x = attributes.value("x").toInt();
 					int y = attributes.value("y").toInt();
@@ -125,7 +125,7 @@ void Project::open(QString filepath) {
 					int height = attributes.value("height").toInt();
 					roi = QRect(x,y,width,height);
 				}
-				else if(xml.name() == "calibration")
+                else if(xml.name() == u"calibration")
 				{
 					calibration.ccdwidth = attributes.value("ccdwidth").toDouble();
 
@@ -145,7 +145,7 @@ void Project::open(QString filepath) {
 
 					calibration.isValid = attributes.value("calibrated").toInt();
 				}
-				else if(xml.name() == "images")
+                else if(xml.name() == u"images")
 				{
 					nbImages = attributes.value("count").toInt();
 					state = 2;
@@ -153,7 +153,7 @@ void Project::open(QString filepath) {
 				break;
 
 			case 2:
-				if (xml.name() == "image") {
+                if (xml.name() == u"image") {
 					addImage(toAbsolutePath(attributes.value("filename").toString()));
 					if (imageFilenames.count() == nbImages) {
 						state = 1;

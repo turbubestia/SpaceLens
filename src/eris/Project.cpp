@@ -119,7 +119,7 @@ void Project::open(QString filepath) {
 
         switch(state) {
             case 0:
-                if (xml.name() == "project") {
+                if (xml.name() == u"project") {
                     if (attributes.count() > 0) {
                         name = attributes.value("name").toString();
                     }
@@ -128,7 +128,7 @@ void Project::open(QString filepath) {
                 break;
 
             case 1:
-                if (xml.name() == "pattern")
+                if (xml.name() == u"pattern")
                 {
                     rows = attributes.value("rows").toInt();
                     cols = attributes.value("cols").toInt();
@@ -137,7 +137,7 @@ void Project::open(QString filepath) {
                     sensorWidth = attributes.value("sensor_width").toDouble();
                     sensorHeight = attributes.value("sensor_height").toDouble();
                 }
-                else if(xml.name() == "calibration")
+                else if(xml.name() == u"calibration")
                 {
                     cx = attributes.value("cx").toDouble();
                     cy = attributes.value("cy").toDouble();
@@ -152,7 +152,7 @@ void Project::open(QString filepath) {
 
                     isCalibrated = attributes.value("calibrated").toInt();
                 }
-                else if(xml.name() == "images")
+                else if(xml.name() == u"images")
                 {
                     nbImages = attributes.value("count").toInt();
                     state = 2;
@@ -160,7 +160,7 @@ void Project::open(QString filepath) {
                 break;
 
             case 2:
-                if (xml.name() == "image") {
+                if (xml.name() == u"image") {
                     addImage(toAbsolutePath(attributes.value("filename").toString()));
                     nbPoints = attributes.value("points").toInt();
                     if (imageFilenames.count() == nbImages && nbPoints == 0) {
@@ -173,7 +173,7 @@ void Project::open(QString filepath) {
                 break;
 
             case 3:
-                if (xml.name() == "point") {
+                if (xml.name() == u"point") {
                     double x = attributes.value("x").toDouble();
                     double y = attributes.value("y").toDouble();
                     points.append(QPointF(x,y));

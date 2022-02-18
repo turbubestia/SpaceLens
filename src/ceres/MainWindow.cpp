@@ -637,14 +637,14 @@ void MainWindow::importCalibration() {
 		switch(state) {
 			case 0:
 				// <calibrations>
-				if (xml.name() == "calibrations") {
+                if (xml.name() == u"calibrations") {
 					state = 1;
 				}
 				break;
 
 			case 1:
 				// <camera />
-				if (xml.name() == "camera") {
+                if (xml.name() == u"camera") {
 					QXmlStreamAttributes attributes = xml.attributes();
 					if (attributes.count() > 0) {
 						project.calibration.ccdwidth = attributes.value("ccdwidth").toDouble();

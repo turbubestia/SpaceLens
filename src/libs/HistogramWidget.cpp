@@ -53,9 +53,10 @@ void HistogramWidget::paintEvent(QPaintEvent *event) {
 		}
 	}
 
-	QMatrix view;
+    QTransform view;
 	view.translate(5,h-5);
 	view.scale((w-10)/256.0, (10-h)/max);
+    painter.setTransform(view);
 
 	QPainterPath contour;
 	contour.moveTo(5,h-5);

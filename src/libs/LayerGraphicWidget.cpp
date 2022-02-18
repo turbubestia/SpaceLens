@@ -177,11 +177,11 @@ void LayerGraphicWidget::paintEvent(QPaintEvent *event) {
     painter.save();
 
     // Transformation matrix
-    QMatrix view;
+    QTransform view;
     view.translate(10, 10); // Board of 10 pixels in screen space
     view.scale(scale, scale); // Transform to image size space
     view.translate(-roi.x(), -roi.y()); //
-    painter.setTransform(QTransform(view));
+    painter.setTransform(view);
 
     // Render each layer in order
     for (int i = 0; i < layers.count(); i++) {
